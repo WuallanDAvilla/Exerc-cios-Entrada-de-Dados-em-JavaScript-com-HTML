@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo3 - Entrada de Dados</title>
+</head>
+<body>
+
+    <p>Selecione seu gênero:</p>
+    <input type="radio" id="masculino" name="genero" value="masculino">
+    <label for="masculino">Masculino</label><br>
+
+    <input type="radio" id="feminino" name="genero" value="feminino">
+    <label for="feminino">Feminino</label><br><br>
+
+    <button onclick="exibirGenero()">Exibir Gênero</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function exibirGenero() {
+            const masculinoRadio = document.getElementById("masculino");
+            const femininoRadio = document.getElementById("feminino");
+            let generoSelecionado = "";
+
+            if (masculinoRadio.checked) {
+                generoSelecionado = "Masculino";
+            } else if (femininoRadio.checked) {
+                generoSelecionado = "Feminino";
+            } else {
+                generoSelecionado = "Nenhum selecionado";
+            }
+            
+            document.getElementById("resultado").textContent = "Você selecionou: " + generoSelecionado;
+        }
+    </script>
+    
+</body>
+</html>

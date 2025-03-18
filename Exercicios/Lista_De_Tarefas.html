@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-b">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h2>Lista de Tarefas</h2>
+    <input type="text" id="tarefa" placeholder="Nova Tarefa">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+    <ul id="listaTarefas"></ul>
+
+    <style>
+        body {
+            font-family: Ariel, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select, button, textarea {
+            margin: 10px;
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+
+    <script>
+    function adicionarTarefa() {
+        let tarefa = document.getElementById('tarefa').value;
+        if (!tarefa) return;
+        let li = document.createElement('li');
+        li.innerText = tarefa;
+        let btn = document.createElement('button');
+        btn.innerText = "Remover";
+        btn.onclick = function() { li.remove(); };
+        li.appendChild(btn);
+        document.getElementById('listaTarefas').appendChild(li);
+    }
+    </script>
+    
+</body>

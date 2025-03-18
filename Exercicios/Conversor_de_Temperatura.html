@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-b">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h3>Conversor de Temperatura:</h3>
+    <input type="number" id="temperatura" placeholder="Digite a temperatura">
+    <select id="conversao">
+        <option value="cf">Celsius para Fahrenheit</option>
+        <option value="fc">Fahrenheit para Celsius</option>
+    </select>
+    <button onclick="converter()">Converter</button>
+    <p id="resultadoTemp"></p>
+
+    <style>
+        body {
+            font-family: Ariel, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select, button, textarea {
+            margin: 10px;
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+
+    <script>
+    function converter() {
+        let temp = parseFloat(document.getElementById('temperatura').value);
+        let tipo = document.getElementById('conversao').value;
+        let resultadoTemp = document.getElementById('resultadoTemp');
+
+        if (isNaN(temp)) {
+            resultadoTemp.innerText = "Insira um número válido.";
+            return;
+        }
+
+        let resultado = tipo === "cf" ? (temp * 9/5) + 32 : (temp - 32) * 5/9;
+        resultadoTemp.innerText = "Resultado: " + resultado.toFixed(2);
+    }
+    </script>
+    
+</body>
+</html>

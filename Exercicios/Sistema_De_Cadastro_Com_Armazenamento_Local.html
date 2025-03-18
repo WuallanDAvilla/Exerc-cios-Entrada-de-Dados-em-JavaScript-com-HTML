@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-b">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema_De_Cadastro_Com_Armazenamento_Local</title>
+</head>
+<body>
+        <h2>Cadastro</h2>
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <input type="password" id="confirmaSenha" placeholder="Confirme a Senha" required>
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <div class="container">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginSenha" placeholder="Senha" required>
+        <button onclick="login()">Entrar</button>
+    </div>
+
+    <style>
+        body {
+            font-family: Ariel, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select, button, textarea {
+            margin: 10px;
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+
+    <script>
+    function cadastrar() {
+            let nome = document.getElementById("nome").value;
+            let email = document.getElementById("email").value;
+            let senha = document.getElementById("senha").value;
+            let confirmaSenha = document.getElementById("confirmaSenha").value;
+
+            if (senha !== confirmaSenha) {
+                alert("As senhas não coincidem!");
+                return;
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                alert("Email inválido!");
+                return;
+            }
+
+            let usuario = { nome, email, senha };
+            localStorage.setItem(email, JSON.stringify(usuario));
+            alert("Cadastro realizado com sucesso!");
+        }
+
+        function login() {
+            let email = document.getElementById("loginEmail").value;
+            let senha = document.getElementById("loginSenha").value;
+
+            let usuario = JSON.parse(localStorage.getItem(email));
+            if (usuario && usuario.senha === senha) {
+                alert("Login bem-sucedido! Redirecionando...");
+                window.location.href = "bemvindo.html";
+            } else {
+                alert("Email ou senha incorretos!");
+            }
+        }
+    </script>
+    
+</body>

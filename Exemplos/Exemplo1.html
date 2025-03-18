@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo1 - Entrada de Dados</title>
+</head>
+<body>
+    
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome"><br><br>
+
+    <button onclick="exibirNome()">Exibir Nome</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function exibirNome() {
+            const nomeInput = document.getElementById("nome");
+            console.log(nomeInput)
+            const nome = nomeInput.value;
+            document.getElementById("resultado").textContent = "Olá, " + nome + "!";
+
+            if (nome != "") {
+                 document.getElementById("resultado").textContent = "Olá, " + nome + "!";
+                
+            } else {
+                document.getElementById("resultado").textContent = "Nenhum dado inserido";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            margin: 10px;
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+   
+    <h2>Calculadora de IMC</h2>
+    <input type="number" id="altura" placeholder="Altura (m)">
+    <input type="number" id="peso" placeholder="Peso (kg)">
+    <button onclick="calcularIMC()">Calcular IMC</button>
+    <p id="resultadoIMC"></p>
+    <canvas id="graficoIMC" width="400" height="200"></canvas>
+
+    <script>
+        function calcularIMC() { 
+            let altura = parseFloat(document.getElementById('altura').value);
+            let peso = parseFloat(document.getElementById('peso').value);
+            let resultadoIMC = document.getElementById('resultadoIMC');
+
+            if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
+                resultadoIMC.innerText = "Insira valores válidos para altura e peso.";
+                return;
+            }
+
+            let imc = peso / (altura * altura);
+            let classificacao;
+
+            if (imc < 18.5) {
+                classificacao = "Abaixo do Peso";
+            } else if (imc < 24.9) {
+                classificacao = "Peso Normal";
+            } else if (imc < 29.9) {
+                classificacao = "Sobrepeso";
+            } else {
+                classificacao = "Obesidade";
+            }
+
+            resultadoIMC.innerText = `IMC: ${imc.toFixed(2)} - ${classificacao}`;
+            desenharGrafico(imc);
+        }
+
+        function desenharGrafico(imc) {
+            let canvas = document.getElementById('graficoIMC');
+            let ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#ddd";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            let x = (imc / 40) * canvas.width;
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(x - 5, 0, 10, canvas.height);
+        }
+    </script>
+</body>
+</html>

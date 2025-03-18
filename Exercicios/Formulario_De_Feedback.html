@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-b">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Feedback</title>
+</head>
+<body>
+    <h2>Formulário de Feedback</h2>
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="email" id="emailFeedback" placeholder="Email">
+    
+    <h3>Avaliação:</h3>
+    <label><input type="radio" name="avaliacao" value="Excelente"> Excelente</label>
+    <label><input type="radio" name="avaliacao" value="Bom"> Bom</label>
+    <label><input type="radio" name="avaliacao" value="Regular"> Regular</label>
+    <label><input type="radio" name="avaliacao" value="Ruim"> Ruim</label>
+    
+    <textarea id="comentarios" placeholder="Comentários"></textarea>
+    <button onclick="enviarFeedback()">Enviar</button>
+    <div id="resumoFeedback"></div>
+
+    <style>
+        body {
+            font-family: Ariel, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select, button, textarea {
+            margin: 10px;
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+
+    <script>
+    function enviarFeedback() {
+        let nome = document.getElementById('nome').value;
+        let email = document.getElementById('emailFeedback').value;
+        let comentarios = document.getElementById('comentarios').value;
+        let avaliacao = document.querySelector('input[name="avaliacao"]:checked');
+
+         if (!nome || !email || !avaliacao) {
+            alert("Preencha todos os campos obrigatórios.");
+            return;
+        }
+
+        document.getElementById('resumoFeedback').innerHTML = `
+            <h3>Resumo do Feedback</h3>
+            <p><strong>Nome:</strong> ${nome}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Avaliação:</strong> ${avaliacao.value}</p>
+            <p><strong>Comentários:</strong> ${comentarios}</p>
+        `;
+    }  
+    </script>
+    
+</body>

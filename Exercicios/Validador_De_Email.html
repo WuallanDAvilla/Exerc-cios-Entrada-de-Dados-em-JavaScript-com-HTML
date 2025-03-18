@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-b">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Email</title>
+</head>
+<body>
+    <h2>Validador de Email</h2>
+    <input type="text" id="email" placeholder="Digite seu email">
+    <button onclick="validarEmail()">Validar</button>
+    <p id="resultadoEmail"></p>
+
+    <style>
+        body {
+            font-family: Ariel, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select, button, textarea {
+            margin: 10px;
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+    
+    <script>
+    function validarEmail() {
+        let email = document.getElementById('email').value;
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        document.getElementById('resultadoEmail').innerText = regex.test(email) ? "Email válido" : "Email inválido";
+    }
+    </script>
+    
+</body>
